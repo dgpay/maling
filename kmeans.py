@@ -65,6 +65,7 @@ arr[1].append('aa1')
 arr[1].append('aa2')
 print(arr)
 print(len(proc_arr))
+
 def process(proc_arr,c):
     proc_hasil=[]
     # for k in range(0,len(proc_arr)):
@@ -110,11 +111,60 @@ def minClus(proc_hasil):
 minC=[]
 minC=minClus(proc_hasil)
 print(len(minC))
-print(minC)
+
 
 def means(minC,proc_arr):
+    i=0
+    x=0
+    mean_arr=[]
+    while(i<100):
+        k=0
+        totx=0
+        toty=0
+        count=0
+        mean_arr.append([])
+        while(k<len(proc_arr)):
+            if(minC[k]==i):
+                totx=totx+proc_arr[k][1]
+                toty=toty+proc_arr[k][2]
+                count=count+1
+            k=k+1
+        if(count==0):
+            count=1
+        else:
+            x=x+1
+        mean_arr[i].append(totx/count)
+        mean_arr[i].append(toty/count)
+        i=i+1
+    print("tyhiss",x)
+    return mean_arr
+
+mean_arr=means(minC,proc_arr)
+print(len(mean_arr))
+
+def process1(proc_arr,mean_arr):
+    proc_hasil=[]
+    # for k in range(0,len(proc_arr)):
+    #     for s in range(0,len(c)):
+    k=0
     
-    return 0
+    while(k<=len(proc_arr)-1):
+        # print(k)
+        proc_hasil.append([])
+        s=0
+        while(s<=len(mean_arr)-1):
+            pre=abs(((proc_arr[k][1]**2)-(mean_arr[s][1]**2))+((proc_arr[k][2]**2)-(mean_arr[s][2]**2)))
+            hasil = math.sqrt(pre)
+            
+            proc_hasil[k].append(hasil)
+            s=s+1
+        k=k+1
+    return proc_hasil
+
+
+
+
+
 
 
 
